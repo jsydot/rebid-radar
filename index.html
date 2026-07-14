@@ -87,6 +87,7 @@ footer{color:#aaa;font-size:12px;text-align:center;margin:26px 0;line-height:1.8
 <button data-typ="gen">일반공고</button>
 <button data-typ="win">AiX 추천 🏆</button>
 <button data-typ="gov">정부과제</button>
+<button data-typ="skip">미도전·미등록</button>
 </div></nav>
 <div class="wrap">
 <div class="filterbar" id="flags">
@@ -115,16 +116,17 @@ const GOV=[
  {no:"BIZ-124259",name:"2026년 글로벌 비즈니스 라운드테이블 참가기업 모집 공고",org:"문화체육관광부 · 한국콘텐츠진흥원",deadline:"2026-08-04",source:"기업마당",support:"해외시장 1:1 전문 컨설팅",fit:"검토",note:"실감콘텐츠 포함 전 장르 대상 · 직접 사업비 아님",url:"https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?cat=&condition=&condition1=&cpage=4&hashCode=&keyword=&orderGb=&pblancId=PBLN_000000000124259&preKeywords=&rows=15&rowsSel=&schAreaDetailCodes=&schEndAt=N&schJrsdCodeTy=&schPblancDiv=&sort="},
  {no:"BIZ-124257",name:"2026년 IT EXPO BUSAN 우수기업 해외바이어 초청 지원 사업",org:"부산광역시 · 부산정보산업진흥원",deadline:"2026-07-22",source:"기업마당",support:"기업별 최대 1백만원",fit:"조건부 검토",note:"K-ICT WEEK in BUSAN 전시 참여 기업 및 수출·계약 단계 요건",url:"https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?cat=&condition=&condition1=&cpage=4&hashCode=&keyword=&orderGb=&pblancId=PBLN_000000000124257&preKeywords=&rows=15&rowsSel=&schAreaDetailCodes=&schEndAt=N&schJrsdCodeTy=&schPblancDiv=&sort="}
 ];
+const PURSUED_IDS=new Set(["R26BK01586713","R26BK01556769","R26BK01607885","R26BK01612170"]);
 const TIER={0:"조형물·미술",1:"영상콘텐츠",2:"미디어·전시",9:"비상설"};
 const WINL={1:"조달청 평가",2:"규가동",3:"기관 발주",4:"지자체 관망",9:"포기 권장"};
 const WIND={1:"조달청 평가위원 심사 — 당선 확률 최상",2:"규격·가격 동시입찰 — 규격적합 + 가격 승부",
 3:"재단·진흥원·대학 등 기관 발주",4:"지자체 발주 — 자체 평가위원 가능성, 검토 후 진입",
 9:"지자체 + 평가위원 모집 마감 — 다른 사업에 집중 권장"};
-const SECT={re:"유찰 재공고",gen:"일반공고",win:"AiX 추천 — 당선 가능성 순",gov:"정부과제 모니터링"};
+const SECT={re:"유찰 재공고",gen:"일반공고",win:"AiX 추천 — 당선 가능성 순",gov:"정부과제 모니터링",skip:"미도전·미등록 공고"};
 let stars=JSON.parse(localStorage.getItem("rebidStars")||"{}"),hidden=JSON.parse(localStorage.getItem("rebidHidden")||"{}");
 let typ="re",tier="all",onlyNew=false,onlyStar=false,showHidden=false,sortBy="dl",q="";
 const h0=location.hash.replace("#","");
-if(["re","gen","win","gov"].includes(h0))typ=h0;
+if(["re","gen","win","gov","skip"].includes(h0))typ=h0;
 function dday(d){if(!d)return null;return Math.floor((new Date(d.replace(" ","T"))-new Date())/86400000)}
 function esc(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function reasonCls(r){if(r.includes("무응찰"))return "r-empty";if(r.includes("응찰 유찰")||r.includes("단독응찰"))return "r-comp";if(r.includes("무산"))return "r-fail";return "r-etc"}
@@ -136,7 +138,8 @@ function render(){
   for(const x of GOV){const hot=x.deadline==="2026-07-14";const el=document.createElement("div");el.className="card";el.innerHTML=`<div class="r1"><span>${x.source}</span><span class="no">${x.no}</span></div><a class="title" href="${x.url}" target="_blank">${esc(x.name)}</a><div class="meta"><span class="tag tier">정부과제</span><i>/</i><span class="tag${hot?" hot":""}">${hot?"당일 마감":"진행중"}</span><i>/</i><span class="tag ${x.fit==="관망/제외"?"w9":"w3"}">${x.fit}</span></div><div class="meta2"><span class="lbl2">소관</span> <span>${esc(x.org)}</span><i>/</i><span class="lbl2">마감</span> <span class="dl">${x.deadline}</span><i>/</i><span class="lbl2">지원</span> <span class="price">${esc(x.support)}</span><i>/</i><span class="lbl2">판단</span> <span class="${x.fit==="관망/제외"?"r-fail":"r-comp"}">${esc(x.note)}</span></div>`;list.appendChild(el)}
   return;
  }
- let rows=typ==="win"?DATA.slice():DATA.filter(x=>x.typ===typ);
+ if(typ==="skip")list.innerHTML='<div class="govnote"><strong>장표 대조 기준</strong><br>주간관리장표의 <b>1-2. 수주노력</b> 등록 사업과 공고명이 확실히 일치하는 4건(아산 충렬탑·부산오페라하우스·진주 천체투영관 2건)을 제외했습니다. 아래는 이번 G2B 레이더 공고 중 장표에 수주노력으로 <b>미등록</b>된 67건입니다. 미등록은 포기 확정이 아니라 장표 반영 전일 수 있으니 최종 판단 전 확인이 필요합니다.</div>';
+ let rows=typ==="win"?DATA.slice():typ==="skip"?DATA.filter(x=>!PURSUED_IDS.has(x.no)):DATA.filter(x=>x.typ===typ);
  const secAll=rows.length,secNew=rows.filter(x=>x.new).length;
  if(tier!=="all")rows=rows.filter(x=>x.tier===+tier);
  if(q)rows=rows.filter(x=>(x.name+x.org).toLowerCase().includes(q));
