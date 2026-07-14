@@ -124,6 +124,7 @@ const GOV=[
  {no:"BIZ-124259",name:"2026년 글로벌 비즈니스 라운드테이블 참가기업 모집 공고",org:"문화체육관광부 · 한국콘텐츠진흥원",deadline:"2026-08-04",source:"기업마당",support:"해외시장 1:1 전문 컨설팅",fit:"검토",note:"실감콘텐츠 포함 전 장르 대상 · 직접 사업비 아님",url:"https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?cat=&condition=&condition1=&cpage=4&hashCode=&keyword=&orderGb=&pblancId=PBLN_000000000124259&preKeywords=&rows=15&rowsSel=&schAreaDetailCodes=&schEndAt=N&schJrsdCodeTy=&schPblancDiv=&sort="},
  {no:"BIZ-124257",name:"2026년 IT EXPO BUSAN 우수기업 해외바이어 초청 지원 사업",org:"부산광역시 · 부산정보산업진흥원",deadline:"2026-07-22",source:"기업마당",support:"기업별 최대 1백만원",fit:"조건부 검토",note:"K-ICT WEEK in BUSAN 전시 참여 기업 및 수출·계약 단계 요건",url:"https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?cat=&condition=&condition1=&cpage=4&hashCode=&keyword=&orderGb=&pblancId=PBLN_000000000124257&preKeywords=&rows=15&rowsSel=&schAreaDetailCodes=&schEndAt=N&schJrsdCodeTy=&schPblancDiv=&sort="}
 ];
+const GOV_RECOMMENDED=new Set(["BIZ-124003","BIZ-124000","BIZ-124031","BIZ-124059"]);
 const PURSUED_IDS=new Set(["R26BK01586713","R26BK01556769","R26BK01607885","R26BK01612170"]);
 const TIER={0:"조형물·미술",1:"영상콘텐츠",2:"미디어·전시",9:"비상설"};
 const WINL={1:"조달청 평가",2:"규가동",3:"기관 발주",4:"지자체 관망",9:"포기 권장"};
@@ -141,9 +142,9 @@ function reasonCls(r){if(r.includes("무응찰"))return "r-empty";if(r.includes(
 function render(){
  const list=document.getElementById("list");list.innerHTML="";
  if(typ==="gov"){
-  document.getElementById("cnt").textContent="[확장스캔 기업마당 300건 + IRIS 10건 · 후보 12건]";
-  list.innerHTML='<div class="govnote"><strong>오늘의 결론</strong><br>기존 자동스캔의 기업마당 최신 15건 한계를 보완해 최신 300건을 추가 대조했습니다. 프리다츠 직접 수행비 후보는 인천 콘텐츠 제작(최대 9천만원)·지역소재 영상 제작(과제당 8,600만원) 2건이며, 둘 다 소재지 요건 확인이 선행됩니다. 나머지는 IP·해외진출·실증 연계형 조건부 후보로 분리했습니다.</div>';
-  for(const x of GOV){const hot=x.deadline==="2026-07-14";const el=document.createElement("div");el.className="card";el.innerHTML=`<div class="r1"><span>${x.source}</span><span class="no">${x.no}</span></div><a class="title" href="${x.url}" target="_blank">${esc(x.name)}</a><div class="meta"><span class="tag tier">정부과제</span><i>/</i><span class="tag${hot?" hot":""}">${hot?"당일 마감":"진행중"}</span><i>/</i><span class="tag ${x.fit==="관망/제외"?"w9":"w3"}">${x.fit}</span></div><div class="meta2"><span class="lbl2">소관</span> <span>${esc(x.org)}</span><i>/</i><span class="lbl2">마감</span> <span class="dl">${x.deadline}</span><i>/</i><span class="lbl2">지원</span> <span class="price">${esc(x.support)}</span><i>/</i><span class="lbl2">판단</span> <span class="${x.fit==="관망/제외"?"r-fail":"r-comp"}">${esc(x.note)}</span></div>`;list.appendChild(el)}
+  document.getElementById("cnt").textContent="[확장스캔 기업마당 300건 + IRIS 10건 · 후보 12건 · ★ 추천 4건]";
+  list.innerHTML='<div class="govnote"><strong>★ 바로 검토 추천</strong><br>인천 콘텐츠 제작·지역소재 영상 제작은 지원금이 크지만 소재지 요건을 먼저 확인해야 합니다. 싱가포르 미디어테크 쇼케이스와 K-콘텐츠 해외 권리화는 전국 단위 지원으로, 프리다츠 보유 IP·미디어테크 포지셔닝을 확인해 바로 검토할 후보로 표시했습니다.</div>';
+  for(const x of GOV){const hot=x.deadline==="2026-07-14",rec=GOV_RECOMMENDED.has(x.no);const el=document.createElement("div");el.className="card";el.innerHTML=`<div class="r1"><span>${x.source}</span><span class="no">${x.no}</span></div><a class="title" href="${x.url}" target="_blank">${esc(x.name)}</a><div class="meta"><span class="tag tier">정부과제</span><i>/</i>${rec?'<span class="tag hot">★ 추천</span><i>/</i>':''}<span class="tag${hot?" hot":""}">${hot?"당일 마감":"진행중"}</span><i>/</i><span class="tag ${x.fit==="관망/제외"?"w9":"w3"}">${x.fit}</span></div><div class="meta2"><span class="lbl2">소관</span> <span>${esc(x.org)}</span><i>/</i><span class="lbl2">마감</span> <span class="dl">${x.deadline}</span><i>/</i><span class="lbl2">지원</span> <span class="price">${esc(x.support)}</span><i>/</i><span class="lbl2">판단</span> <span class="${x.fit==="관망/제외"?"r-fail":"r-comp"}">${esc(x.note)}</span></div>`;list.appendChild(el)}
   return;
  }
  if(typ==="skip")list.innerHTML='<div class="govnote"><strong>장표 대조 기준</strong><br>주간관리장표의 <b>1-2. 수주노력</b> 등록 사업과 공고명이 확실히 일치하는 4건(아산 충렬탑·부산오페라하우스·진주 천체투영관 2건)을 제외했습니다. 아래는 이번 G2B 레이더 공고 중 장표에 수주노력으로 <b>미등록</b>된 67건입니다. 미등록은 포기 확정이 아니라 장표 반영 전일 수 있으니 최종 판단 전 확인이 필요합니다.</div>';
