@@ -140,6 +140,16 @@ footer{color:#aaa;font-size:12px;text-align:center;margin:26px 0;line-height:1.8
 <button class="chip qchip" data-qual="consortium">컨소 보완</button>
 <button class="chip qchip" data-qual="review">추가 확인</button>
 <button class="chip qchip" data-qual="blocked">현재 도전 곤란</button>
+<span class="vline"></span>
+<span class="lbl">정렬</span>
+<button class="chip qsortchip on" data-qsort="dl">마감 임박순</button>
+<button class="chip qsortchip" data-qsort="bg">사업비 큰순</button>
+</div>
+<div class="filterbar" id="govFlags" hidden>
+<span class="lbl">정부과제 정렬</span>
+<button class="chip gsortchip on" data-gsort="dl">마감 임박순</button>
+<button class="chip gsortchip" data-gsort="bg">지원금 큰순</button>
+<span class="lbl">금액 미기재·현물지원은 금액순에서 뒤로</span>
 </div>
 <div class="sechead"><h2 id="secTitle">유찰 재공고</h2><span class="cnt" id="cnt"></span><span class="gen">G2B 갱신 2026-07-29 20:23 · 자격/RFP 확인 2026-07-29 21:01 · 정부과제 확인 2026-07-29 20:40 · 매일 08:40 자동 갱신</span></div>
 <main id="list"></main>
@@ -202,7 +212,7 @@ const QUAL_GROUPS={
 };
 const SECT={re:"유찰 재공고",gen:"일반공고",qual:"프리다츠 자격판단",win:"AiX 추천 — 적합도·당선 가능성 순",gov:"정부과제 모니터링",skip:"미도전·미등록 공고"};
 let stars=JSON.parse(localStorage.getItem("rebidStars")||"{}"),hidden=JSON.parse(localStorage.getItem("rebidHidden")||"{}");
-let typ="re",tier="all",qualMode="all",onlyNew=false,onlyStar=false,showHidden=false,sortBy="dl",q="";
+let typ="re",tier="all",qualMode="all",qualSortBy="dl",govSortBy="dl",onlyNew=false,onlyStar=false,showHidden=false,sortBy="dl",q="";
 const h0=location.hash.replace("#","");
 if(["re","gen","qual","win","gov","skip"].includes(h0))typ=h0;
 function dday(d){if(!d)return null;return Math.floor((new Date(d.replace(" ","T"))-new Date())/86400000)}
@@ -210,6 +220,15 @@ function localDateKey(){const d=new Date(),p=n=>String(n).padStart(2,"0");return
 function activeData(){const now=new Date();return CURATED.filter(x=>!x.deadline||new Date(x.deadline.replace(" ","T"))>=now)}
 function esc(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function reasonCls(r){if(r.includes("무응찰"))return "r-empty";if(r.includes("응찰 유찰")||r.includes("단독응찰"))return "r-comp";if(r.includes("무산"))return "r-fail";return "r-etc"}
+function govSupportAmount(text){
+ const values=[],s=(text||"").replace(/\s+/g," ");
+ const collect=(re,mult)=>{for(const m of s.matchAll(re))values.push(parseFloat(m[1].replace(/,/g,""))*mult)};
+ collect(/([\d,.]+)\s*억(?:원)?/g,100000000);
+ collect(/([\d,.]+)\s*천만(?:원)?/g,10000000);
+ collect(/([\d,.]+)\s*백만(?:원)?/g,1000000);
+ collect(/([\d,.]+)\s*만(?:원)?/g,10000);
+ return values.length?Math.max(...values):0;
+}
 function qualGroup(x){
  const e=ELIGIBILITY[x.no]||{s:"미확인",c:"미확인"};
  if(e.s==="충족")return "solo";
@@ -223,8 +242,11 @@ function render(){
   const today=localDateKey();
   let govRows=GOV.filter(x=>x.deadline>=today);
   if(q)govRows=govRows.filter(x=>(x.name+x.org+x.note).toLowerCase().includes(q));
+  govRows.sort((a,b)=>govSortBy==="bg"
+   ?((govSupportAmount(b.support)-govSupportAmount(a.support))||a.deadline.localeCompare(b.deadline))
+   :a.deadline.localeCompare(b.deadline));
   const recCount=govRows.filter(x=>GOV_RECOMMENDED.has(x.no)).length;
-   document.getElementById("cnt").textContent="[진행 "+govRows.length+"건 · 우선 확인 "+recCount+"건]";
+   document.getElementById("cnt").textContent="[진행 "+govRows.length+"건 · 우선 확인 "+recCount+"건 · "+(govSortBy==="bg"?"지원금 큰순":"마감 임박순")+"]";
    list.innerHTML='<div class="govnote"><strong>프리다츠 우선 확인 후보</strong><br>벤처나라 입점 기관추천은 조달 연계성이 높지만 유효한 창업기업확인서와 지정대상 제품·서비스 요건을 먼저 확인해야 합니다. K-콘텐츠 해외 권리화는 보유 콘텐츠 IP가 있을 때 활용할 수 있습니다. 충북 콘텐츠IP·융합상품 개발은 직접성이 높지만 충북 이전 확약이 필요합니다. <b>2026-07-29 20:40 기준 공식 상세페이지 확인본</b>이며, 참여 여부는 PM이 원문 증빙을 확인해 결정합니다.</div>';
    for(const x of govRows){const rec=GOV_RECOMMENDED.has(x.no);const el=document.createElement("div");el.className="card";el.innerHTML=`<div class="r1"><span>${x.source}</span><span class="no">${x.no}</span></div><a class="title" href="${x.url}" target="_blank" rel="noopener">${esc(x.name)}</a><div class="meta"><span class="tag tier">정부과제</span><i>/</i>${rec?'<span class="tag hot">우선 확인</span><i>/</i>':''}<span class="tag">진행중</span><i>/</i><span class="tag ${x.fit==="관망/제외"?"w9":"w3"}">${x.fit}</span></div><div class="meta2"><span class="lbl2">소관</span> <span>${esc(x.org)}</span><i>/</i><span class="lbl2">마감</span> <span class="dl">${x.deadline}</span><i>/</i><span class="lbl2">지원</span> <span class="price">${esc(x.support)}</span><i>/</i><span class="lbl2">자격 메모</span> <span class="${x.fit==="관망/제외"?"r-fail":"r-comp"}">${esc(x.note)}</span></div>`;list.appendChild(el)}
   if(!govRows.length)list.innerHTML='<div class="empty">진행 중인 정부과제 후보가 없습니다</div>';
@@ -250,9 +272,12 @@ function render(){
  if(typ!=="qual"&&onlyStar)rows=rows.filter(x=>stars[x.no]);
  rows=rows.filter(x=>showHidden||!hidden[x.no]);
  const cmp=(a,b)=>sortBy==="bg"?(b.budgetRaw||0)-(a.budgetRaw||0):((a.deadline||"9999")>(b.deadline||"9999")?1:-1);
- rows.sort((a,b)=>typ==="win"?((a.win-b.win)||cmp(a,b)):typ==="qual"?((QUAL_GROUPS[qualGroup(a)].order-QUAL_GROUPS[qualGroup(b)].order)||cmp(a,b)):cmp(a,b));
+ const qualCmp=(a,b)=>qualSortBy==="bg"
+  ?((b.budgetRaw||0)-(a.budgetRaw||0)||((a.deadline||"9999")>(b.deadline||"9999")?1:-1))
+  :((a.deadline||"9999")>(b.deadline||"9999")?1:-1);
+ rows.sort((a,b)=>typ==="win"?((a.win-b.win)||cmp(a,b)):typ==="qual"?((QUAL_GROUPS[qualGroup(a)].order-QUAL_GROUPS[qualGroup(b)].order)||qualCmp(a,b)):cmp(a,b));
  document.getElementById("cnt").textContent=typ==="qual"
-  ?"[검색결과 "+rows.length+"건 / 전체 "+secAll+"건 · 단독 "+qualCounts.solo+" · 컨소 "+qualCounts.consortium+" · 확인 "+qualCounts.review+" · 곤란 "+qualCounts.blocked+"]"
+  ?"[검색결과 "+rows.length+"건 / 전체 "+secAll+"건 · 단독 "+qualCounts.solo+" · 컨소 "+qualCounts.consortium+" · 확인 "+qualCounts.review+" · 곤란 "+qualCounts.blocked+" · "+(qualSortBy==="bg"?"사업비 큰순":"마감 임박순")+"]"
   :"[검색결과 "+rows.length+"건 / 섹션 "+secAll+"건 · 오늘 신규 "+secNew+"건]";
  if(!rows.length){list.innerHTML='<div class="empty">조건에 맞는 공고가 없습니다</div>';return}
  let lastWin=null,lastQual=null;
@@ -317,6 +342,7 @@ function setTab(t,updateHash=true){
  document.getElementById("secTitle").textContent=SECT[t];
  document.getElementById("flags").hidden=t==="gov"||t==="qual";
  document.getElementById("qualFlags").hidden=t!=="qual";
+ document.getElementById("govFlags").hidden=t!=="gov";
  document.getElementById("q").placeholder=t==="gov"?"과제명/기관을 입력해 주세요.":t==="qual"?"공고명/기관/자격을 검색해 주세요.":"공고명/수요기관을 입력해 주세요.";
  render();
 }
@@ -334,9 +360,17 @@ document.getElementById("flags").addEventListener("click",e=>{
  render();
 });
 document.getElementById("qualFlags").addEventListener("click",e=>{
+ const s=e.target.closest(".qsortchip");
+ if(s){qualSortBy=s.dataset.qsort;document.querySelectorAll(".qsortchip").forEach(x=>x.classList.toggle("on",x===s));render();return}
  const c=e.target.closest(".qchip");if(!c)return;
  qualMode=c.dataset.qual;
  document.querySelectorAll(".qchip").forEach(x=>x.classList.toggle("on",x===c));
+ render();
+});
+document.getElementById("govFlags").addEventListener("click",e=>{
+ const s=e.target.closest(".gsortchip");if(!s)return;
+ govSortBy=s.dataset.gsort;
+ document.querySelectorAll(".gsortchip").forEach(x=>x.classList.toggle("on",x===s));
  render();
 });
 document.getElementById("sort").addEventListener("change",e=>{sortBy=e.target.value;render()});
