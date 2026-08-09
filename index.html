@@ -114,6 +114,8 @@ footer{color:#aaa;font-size:12px;text-align:center;margin:26px 0;line-height:1.8
 <nav><div class="wrap" id="typNav">
 <button data-typ="re" class="on">유찰 재공고</button>
 <button data-typ="gen">일반공고</button>
+<button data-typ="plan">발주계획</button>
+<button data-typ="spec">사전규격</button>
 <button data-typ="qual">자격판단</button>
 <button data-typ="win">AiX 추천 🏆</button>
 <button data-typ="gov">정부과제</button>
@@ -151,9 +153,9 @@ footer{color:#aaa;font-size:12px;text-align:center;margin:26px 0;line-height:1.8
 <button class="chip gsortchip" data-gsort="bg">지원금 큰순</button>
 <span class="lbl">금액 미기재·현물지원은 금액순에서 뒤로</span>
 </div>
-<div class="sechead"><h2 id="secTitle">유찰 재공고</h2><span class="cnt" id="cnt"></span><span class="gen">G2B 갱신 2026-08-09 22:30 · 자격/RFP 확인 2026-08-09 22:30 · 정부과제 확인 2026-08-09 · 매일 08:40 자동 갱신</span></div>
+<div class="sechead"><h2 id="secTitle">유찰 재공고</h2><span class="cnt" id="cnt"></span><span class="gen">발주계획·사전규격·G2B 갱신 2026-08-10 · 자격/RFP 확인 2026-08-10 · 정부과제 확인 2026-08-10 · 매일 08:40 자동 갱신</span></div>
 <main id="list"></main>
-<footer>유찰 재공고 + 일반공고(배정예산 5천만 이상) 모니터링 · 예산은 배정예산(부가세 포함) · ★ 관심/숨김은 보는 사람 브라우저에 저장<br>
+<footer>발주계획 → 사전규격 → 본공고 → 유찰·재공고 전 과정 모니터링 · 일반공고는 배정예산 5천만 이상 · ★ 관심/숨김은 보는 사람 브라우저에 저장<br>
 * 표시는 개찰일 기준 — 협상건은 제안서 마감이 더 빠를 수 있으니 공고문 확인<br>
 자격 표시는 프리다츠 보유 증빙과 공고문 자동 대조 결과이며, 입찰 전 나라장터·SMPP·면허·실적 원본을 최종 확인</footer>
 </div>
@@ -232,10 +234,24 @@ const RESEARCHED_DATA=[
  {no:"R26BK01634057",name:"2026 공연예술유통 통합홍보 대행",org:"조달청 서울지방조달청 · 예술경영지원센터",typ:"gen",tier:9,kind:"용역",method:"협상(제한)",budget:"4.9억",budgetRaw:494034000,deadline:"2026-08-11 10:00",isOpeng:false,reason:"",win:9,evalNote:"",posted:"2026-07-16",new:true,share:"마케팅",url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01634057&bidPbancOrd=000"},
  {no:"R26BK01638600",name:"G-FAIR KOREA 전시·홍보·마케팅 운영 용역",org:"경기도경제과학진흥원",typ:"gen",tier:9,kind:"용역",method:"협상(제한)",budget:"1.9억",budgetRaw:193977000,deadline:"2026-08-12 11:00",isOpeng:false,reason:"",win:9,evalNote:"",posted:"2026-07-20",new:true,share:"마케팅",url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01638600&bidPbancOrd=000"},
  {no:"R26BK01665436",name:"진주남강유등축제 AI 플랫폼 및 키오스크 구축",org:"재단법인 진주문화예술재단",typ:"gen",tier:9,kind:"용역",method:"협상(제한)",budget:"1.5억",budgetRaw:150000000,deadline:"2026-08-18 17:00",isOpeng:false,reason:"",win:9,evalNote:"",posted:"2026-08-04",new:true,url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01665436&bidPbancOrd=000"},
- {no:"R26BK01666060",name:"고석정 꽃밭 야간 미디어아트 전기공사",org:"강원특별자치도 철원군",typ:"gen",tier:9,kind:"공사",method:"적격심사(제한)",budget:"6.4억",budgetRaw:643852000,deadline:"2026-08-10 10:00",isOpeng:false,reason:"",win:9,evalNote:"",posted:"2026-08-04",new:true,url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01666060&bidPbancOrd=000"}
+ {no:"R26BK01666060",name:"고석정 꽃밭 야간 미디어아트 전기공사",org:"강원특별자치도 철원군",typ:"gen",tier:9,kind:"공사",method:"적격심사(제한)",budget:"6.4억",budgetRaw:643852000,deadline:"2026-08-10 10:00",isOpeng:false,reason:"",win:9,evalNote:"",posted:"2026-08-04",new:true,url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01666060&bidPbancOrd=000"},
+ {no:"R26BK01664785",name:"2026년 한서대학교 산업디자인 개발 프로젝트 설계 컨설팅 및 목업 개발 용역",org:"한서대학교 산학협력단",typ:"gen",tier:2,kind:"용역",method:"제한경쟁",budget:"2.2억",budgetRaw:220000000,deadline:"2026-08-20 15:00",isOpeng:true,reason:"",win:3,evalNote:"발주계획에서 본공고 전환 확인",posted:"2026-08-08",new:true,url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01664785&bidPbancOrd=000"},
+ {no:"R26BK01669893",name:"디지털문화자원 공동활용플랫폼 AI 인프라 확충 사업",org:"한국문화정보원",typ:"gen",tier:9,kind:"물품",method:"제한경쟁",budget:"2.0억",budgetRaw:200000000,deadline:"2026-08-21 10:00",isOpeng:true,reason:"",win:9,evalNote:"문화플랫폼이나 서버·인프라 중심",posted:"2026-08-10",new:true,url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01669893&bidPbancOrd=000"},
+ {no:"R26BK01671038",name:"경성대학교 하이플렉스 강의실 LED Display 구매 설치 입찰 (긴급) 공고",org:"경성대학교 직속기관 산학협력단",typ:"gen",tier:2,kind:"물품",method:"제한경쟁",budget:"10.0억",budgetRaw:998200000,deadline:"2026-08-14 10:00",isOpeng:true,reason:"",win:3,evalNote:"정보통신공사업·영상정보디스플레이 직생 확인",posted:"2026-08-08",new:true,url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01671038&bidPbancOrd=000"},
+ {no:"R26BK01671037",name:"경성대학교 대형홀 LED월 구축 입찰 (긴급) 공고",org:"경성대학교 직속기관 산학협력단",typ:"gen",tier:2,kind:"물품",method:"제한경쟁",budget:"4.8억",budgetRaw:480471200,deadline:"2026-08-14 10:00",isOpeng:true,reason:"",win:3,evalNote:"정보통신공사업·영상정보디스플레이 직생 확인",posted:"2026-08-08",new:true,url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01671037&bidPbancOrd=000"},
+ {no:"R26BK01672898",name:"2026 글로벌소상공인육성사업 자카르타국제프리미엄소비재전 용역",org:"경기창조경제혁신센터",typ:"gen",tier:9,kind:"용역",method:"일반경쟁",budget:"1.5억",budgetRaw:150000000,deadline:"2026-08-19 11:00",isOpeng:true,reason:"",win:9,evalNote:"해외전시·마케팅팀 공유",posted:"2026-08-08",new:true,share:"마케팅",url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01672898&bidPbancOrd=000"},
+ {no:"R26BK01670501",name:"독서문학체험관 글숲 사인물 디자인 및 제작·설치",org:"충청북도교육청 충청북도교육도서관",typ:"re",tier:0,kind:"물품",method:"협상(제한)",budget:"0.8억",budgetRaw:80000000,deadline:"2026-08-18 10:00",isOpeng:false,reason:"1회 유찰 후 재공고",win:4,evalNote:"사인물 디자인·제작설치 직접 후보",posted:"2026-08-07",new:true,url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01670501&bidPbancOrd=000"},
+ {no:"R26BK01664969",name:"2026 김포함상공원 열린관광지 야외전시 기획·조성",org:"경기도 김포시",typ:"re",tier:2,kind:"용역",method:"협상(제한)",budget:"2.5억",budgetRaw:250000000,deadline:"2026-08-18 17:00",isOpeng:true,reason:"1회 유찰 후 재공고",win:4,evalNote:"열린관광지·야외전시 직접 후보",posted:"2026-08-06",new:true,url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01664969&bidPbancOrd=000"}
 ];
 DATA.unshift(...RESEARCHED_DATA.filter(x=>!DATA.some(y=>y.no===x.no)));
 Object.assign(ELIGIBILITY,{
+ "R26BK01664785":{"s":"조건부","c":"확인 필요","r":"산업디자인 설계·목업 개발 직접 적합 / 유사실적, 전문인력, 과업별 산출물과 공동수급 조건을 원문 확인","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01664785&bidPbancOrd=000"},
+ "R26BK01669893":{"s":"조건부","c":"불가","r":"정보통신공사업·컴퓨터관련서비스 업종 보유 / AI 서버·스토리지 납품실적과 제조사 공급확약, 세부품명 직접생산을 확인","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01669893&bidPbancOrd=000"},
+ "R26BK01671038":{"s":"조건부","c":"불가","r":"정보통신공사업 및 영상정보디스플레이 직접생산 보유 / LED 규격·납품실적·제조사 공급확약·현장 시공인력을 확인","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01671038&bidPbancOrd=000"},
+ "R26BK01671037":{"s":"조건부","c":"불가","r":"정보통신공사업 및 영상정보디스플레이 직접생산 보유 / 대형 LED월 규격·납품실적·구조안전·현장 시공인력을 확인","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01671037&bidPbancOrd=000"},
+ "R26BK01672898":{"s":"조건부","c":"확인 필요","r":"해외 공동관·전시 운영 범위는 적합 / 행사대행업·해외전시 실적·현지 시공·보험 조건은 마케팅팀과 원문 확인","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01672898&bidPbancOrd=000"},
+ "R26BK01670501":{"s":"조건부","c":"확인 필요","r":"사인물 디자인·제작설치 직접 적합 / 옥외광고업·디자인전문회사·직접생산 세부품명과 공동수급 조건 확인","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01670501&bidPbancOrd=000"},
+ "R26BK01664969":{"s":"조건부","c":"가능(분담)","r":"열린관광지 야외전시 기획·조성 직접 적합 / 배리어프리 관광콘텐츠·야외 구조안전·실적 및 분담범위 확인","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01664969&bidPbancOrd=000"},
  "R26BK01653668":{"s":"불충족","c":"불가","r":"직생 8014198801 전시회기획및대행서비스 보유 / 중소기업확인서 유효(2027-03-31까지) / 필수 업종 9901 미확인","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01653668&bidPbancOrd=000"},
  "R26BK01650989":{"s":"충족","c":"불가","r":"직생 6010989901 실물모형및전시물 보유 / 업종 4990 실내건축공사업 등록 / 중소기업확인서 유효(2027-03-31까지)","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01650989&bidPbancOrd=000"},
  "R26BK01643679":{"s":"불충족","c":"불가","r":"직생 8014198801 전시회기획및대행서비스 보유 / 중소기업확인서 유효(2027-03-31까지) / 필수 업종 9901 미확인 / 공동이행 구성원도 필수 자격 모두 충족 필요","u":"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01643679&bidPbancOrd=000"},
@@ -323,6 +339,38 @@ const MARKETING_SCOPE=["홍보","마케팅","브랜딩","전시","콘텐츠","�
 const MARKETING_EXCLUDE=["소독","방역","보험","감리","lpg","시설관리","콜센터 시스템","국토이용정보체계"];
 function marketingWatchHit(x){const t=(x.name+" "+x.org).toLowerCase();return MARKETING_WATCH.some(w=>w.keywords.some(k=>t.includes(k.toLowerCase())))&&MARKETING_SCOPE.some(k=>t.includes(k.toLowerCase()))&&!MARKETING_EXCLUDE.some(k=>t.includes(k.toLowerCase()))}
 const SCULPTURE_SCAN_TERMS=["조형물","조형","상징물","상징조형","기념물","기념탑","조각","미술작품","공공미술","포토존","관문경관","경관시설","경관조명","야간경관","미디어조형","미디어아트","빛조형","랜드마크","공공디자인","특화거리","문화거리","아름다운거리","빛의거리","루미나리에","조명연출","벽면조성"];
+const ORDER_PLANS=[
+ {no:"PLAN-01",name:"청풍호 바람달정원 조형물 제작설치공사",org:"충청북도",expected:"2026년 08월",method:"수의계약",status:"발주계획",fit:"우선 추적",note:"조형물 직접 사업. 설계·제작·기초·구조안전 범위와 지역·면허 조건을 선제 확인",url:"https://jiwonkok.com/%EC%B2%AD%ED%92%8D%ED%98%B8-%EB%B0%94%EB%9E%8C%EB%8B%AC%EC%A0%95%EC%9B%90-%EC%A1%B0%ED%98%95%EB%AC%BC-%EC%A0%9C%EC%9E%91%EC%84%A4%EC%B9%98%EA%B3%B5%EC%82%AC-%EC%B6%A9%EC%B2%AD%EB%B6%81%EB%8F%84/"},
+ {no:"PLAN-02",name:"2026 광양 국제미디어아트 페스티벌 전시기획 및 운영 용역",org:"광양시",expected:"2026년 08월",method:"제한경쟁",status:"발주계획",fit:"우선 추적",note:"미디어아트·전시기획 핵심. 작가섭외, 콘텐츠 제작, 시스템·운영 컨소시엄 구성을 미리 준비",url:"https://jiwonkok.com/2026-%EA%B4%91%EC%96%91-%EA%B5%AD%EC%A0%9C%EB%AF%B8%EB%94%94%EC%96%B4%EC%95%84%ED%8A%B8-%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C-%EC%A0%84%EC%8B%9C%EA%B8%B0%ED%9A%8D-%EB%B0%8F-%EC%9A%B4%EC%98%81-%EC%9A%A9%EC%97%AD-%EC%A0%84%EB%82%A8%EA%B4%91%EC%A3%BC%ED%86%B5%ED%95%A9%ED%8A%B9%EB%B3%84%EC%8B%9C-%EA%B4%91%EC%96%91%EC%8B%9C/"},
+ {no:"PLAN-03",name:"노암예술터널 미디어아트 콘텐츠 공모전 운영 및 제작 용역",org:"강릉시",expected:"2026년 08월",method:"제한경쟁",status:"발주계획",fit:"우선 추적",note:"공모 운영+미디어아트 제작. 심사 운영과 저작권·송출 규격을 포함한 수행체계를 준비",url:"https://jiwonkok.com/%EB%85%B8%EC%95%94%EC%98%88%EC%88%A0%ED%84%B0%EB%84%90-%EB%AF%B8%EB%94%94%EC%96%B4%EC%95%84%ED%8A%B8-%EC%BD%98%ED%85%90%EC%B8%A0-%EA%B3%B5%EB%AA%A8%EC%A0%84-%EC%9A%B4%EC%98%81-%EB%B0%8F-%EC%A0%9C%EC%9E%91-%EC%9A%A9%EC%97%AD-%EA%B0%95%EC%9B%90%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84-%EA%B0%95%EB%A6%89%EC%8B%9C/"},
+ {no:"PLAN-04",name:"박물관 킬러콘텐츠 존 조성 관련 상설전시관 및 로비공간 리뉴얼",org:"제주국제자유도시개발센터",expected:"2026년 08월",method:"일반경쟁",status:"발주계획",fit:"우선 추적",note:"상설전시·공간 리뉴얼 직접 적합. 전시 설계, 체험콘텐츠, 시공 실적 패키지를 선제 구성",url:"https://jiwonkok.com/%EB%B0%95%EB%AC%BC%EA%B4%80-%ED%82%AC%EB%9F%AC%EC%BD%98%ED%85%90%EC%B8%A0-%EC%A1%B4-%EC%A1%B0%EC%84%B1-%EA%B4%80%EB%A0%A8-%EC%83%81%EC%84%A4%EC%A0%84%EC%8B%9C%EA%B4%80-how-things-fly%EC%A1%B4-%EB%B0%8F-%EB%A1%9C%EB%B9%84%EA%B3%B5%EA%B0%84-%EB%A6%AC%EB%89%B4%EC%96%BC-%EC%A0%9C%EC%A3%BC%EA%B5%AD%EC%A0%9C%EC%9E%90%EC%9C%A0%EB%8F%84%EC%8B%9C%EA%B0%9C%EB%B0%9C%EC%84%BC%ED%84%B0/"},
+ {no:"PLAN-05",name:"2026년 대통령기록관 기획전시 연출 용역 사업",org:"행정안전부 대통령기록관",expected:"2026년 08월",method:"제한경쟁",status:"발주계획",fit:"우선 추적",note:"기획전시 연출 직접 적합. 국가기록물 보안·보존과 전시연출 실적을 함께 정리",url:"https://jiwonkok.com/2026%EB%85%84-%EB%8C%80%ED%86%B5%EB%A0%B9%EA%B8%B0%EB%A1%9D%EA%B4%80-%EA%B8%B0%ED%9A%8D%EC%A0%84%EC%8B%9C-%EC%97%B0%EC%B6%9C-%EC%9A%A9%EC%97%AD-%EC%82%AC%EC%97%85-%ED%96%89%EC%A0%95%EC%95%88%EC%A0%84%EB%B6%80-%EB%8C%80%ED%86%B5%EB%A0%B9%EA%B8%B0%EB%A1%9D%EA%B4%80/"},
+ {no:"PLAN-06",name:"2026 강릉 ITS 세계총회 국토교통부 AX-Sprint 통합전시관 기획·디자인·설치 및 운영",org:"한국지능형교통체계협회",expected:"2026년 08월",method:"제한경쟁",status:"발주계획",fit:"검토",note:"대형 통합전시관. 전시기획·디자인·설치·운영 전 범위와 ITS 콘텐츠 파트너 준비",url:"https://jiwonkok.com/2026-%EA%B0%95%EB%A6%89-its-%EC%84%B8%EA%B3%84%EC%B4%9D%ED%9A%8C-%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%EB%B6%80-ax-sprint-%ED%86%B5%ED%95%A9%EC%A0%84%EC%8B%9C%EA%B4%80-%EA%B8%B0%ED%9A%8D%EB%94%94%EC%9E%90%EC%9D%B8%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%9A%B4%EC%98%81-%EB%8C%80%ED%96%89-%EC%9A%A9%EC%97%AD-%ED%95%9C%EA%B5%AD%EC%A7%80%EB%8A%A5%ED%98%95%EA%B5%90%ED%86%B5%EC%B2%B4%EA%B3%84%ED%98%91%ED%9A%8C-1/"},
+ {no:"PLAN-07",name:"2026년 에듀테크 코리아 페어 소프트랩 홍보관 구축·운영",org:"한국교육학술정보원",expected:"2026년 08월",method:"제한경쟁",status:"발주계획",fit:"검토",note:"홍보관 설계·시공·운영. 교육기술 콘텐츠 파트너와 부스 포트폴리오 준비",url:"https://jiwonkok.com/2026%EB%85%84-%EC%97%90%EB%93%80%ED%85%8C%ED%81%AC-%EC%BD%94%EB%A6%AC%EC%95%84-%ED%8E%98%EC%96%B4-%EC%86%8C%ED%94%84%ED%8A%B8%EB%9E%A9-%ED%99%8D%EB%B3%B4%EA%B4%80-%EA%B5%AC%EC%B6%95%EC%9A%B4%EC%98%81-%ED%95%9C%EA%B5%AD%EA%B5%90%EC%9C%A1%ED%95%99%EC%88%A0%EC%A0%95%EB%B3%B4%EC%9B%90/"},
+ {no:"PLAN-08",name:"UCCN 전시물 제작 및 설치 용역",org:"유네스코미디어아트창의도시플랫폼",expected:"2026년 08월",method:"수의계약",status:"발주계획",fit:"우선 추적",note:"미디어아트 전시물 직접 사업. 수의계약 대상·견적요청 가능 여부를 기관에 확인",url:"https://jiwonkok.com/uccn-%EC%A0%84%EC%8B%9C%EB%AC%BC-%EC%A0%9C%EC%9E%91-%EB%B0%8F-%EC%84%A4%EC%B9%98-%EC%9A%A9%EC%97%AD%EA%B0%95-%EC%A0%84%EB%82%A8%EA%B4%91%EC%A3%BC%ED%86%B5%ED%95%A9%ED%8A%B9%EB%B3%84%EC%8B%9C-%EC%9C%A0%EB%84%A4%EC%8A%A4%EC%BD%94%EB%AF%B8%EB%94%94%EC%96%B4%EC%95%84%ED%8A%B8%EC%B0%BD%EC%9D%98%EB%8F%84%EC%8B%9C%ED%94%8C%EB%9E%AB%ED%8F%BC/"},
+ {no:"PLAN-09",name:"2026년 한서대학교 산업디자인 설계 컨설팅 및 목업 개발",org:"한서대학교 산학협력단",expected:"2026년 08월",method:"제한경쟁",status:"본공고 전환",fit:"즉시 검토",note:"본공고 R26BK01664785 전환 확인. 8/20 15:00 마감",url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01664785&bidPbancOrd=000"},
+ {no:"PLAN-10",name:"2028 세계디자인수도 부산 브랜드 BI 구축 및 운영체계 수립",org:"부산디자인진흥원",expected:"2026년 08월",method:"제한경쟁",status:"사전규격 전환",fit:"즉시 검토",note:"사전규격 의견마감 8/13. 브랜딩·운영체계 실적과 컨소시엄 필요성 확인",url:"https://jiwonkok.com/2028-%EC%84%B8%EA%B3%84%EB%94%94%EC%9E%90%EC%9D%B8%EC%88%98%EB%8F%84-%EB%B6%80%EC%82%B0-%EB%B8%8C%EB%9E%9C%EB%93%9C-bi-%EA%B5%AC%EC%B6%95-%EB%B0%8F-%EC%9A%B4%EC%98%81%EC%B2%B4%EA%B3%84-%EC%88%98%EB%A6%BD-%EC%9E%AC%EB%B6%80%EC%82%B0%EB%94%94%EC%9E%90%EC%9D%B8%EC%A7%84%ED%9D%A5%EC%9B%90/"},
+ {no:"PLAN-11",name:"국립해양박물관 기획전시 해상무역 전시연출 및 제작 설치",org:"국립해양박물관",expected:"2026년 08월",method:"제한경쟁",status:"사전규격 전환",fit:"즉시 검토",note:"사전규격 의견마감 8/11. 전시연출·제작설치 핵심 후보",url:"https://jiwonkok.com/%EA%B5%AD%EB%A6%BD%ED%95%B4%EC%96%91%EB%B0%95%EB%AC%BC%EA%B4%80-%EA%B8%B0%ED%9A%8D%EC%A0%84%EC%8B%9C-%ED%95%B4%EC%83%81%EB%AC%B4%EC%97%AD-%EC%A0%84%EC%8B%9C%EC%97%B0%EC%B6%9C-%EB%B0%8F-%EC%A0%9C%EC%9E%91-%EC%84%A4%EC%B9%98-%EC%9A%A9%EC%97%AD-%EA%B5%AD%EB%A6%BD%ED%95%B4%EC%96%91%EB%B0%95%EB%AC%BC%EA%B4%80/"},
+ {no:"PLAN-12",name:"기념우표 기획전시관 조성 용역",org:"우정사업조달센터",expected:"2026년 08월",method:"제한경쟁",status:"사전규격 전환",fit:"즉시 검토",note:"사전규격 의견마감 8/10. 금일 과업·자격·직생 의견 검토",url:"https://jiwonkok.com/%EA%B8%B0%EB%85%90%EC%9A%B0%ED%91%9C-%EA%B8%B0%ED%9A%8D%EC%A0%84%EC%8B%9C%EA%B4%80-%EC%A1%B0%EC%84%B1-%EC%9A%A9%EC%97%AD-%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EB%B6%80-%EC%9A%B0%EC%A0%95%EC%82%AC%EC%97%85%EB%B3%B8%EB%B6%80-%EC%9A%B0%EC%A0%95%EC%82%AC%EC%97%85%EC%A1%B0%EB%8B%AC%EC%84%BC%ED%84%B0/"},
+ {no:"PLAN-13",name:"구미시 브랜드 실감콘텐츠 영상 제작",org:"구미시",expected:"2026년 08월",method:"제한경쟁",status:"사전규격 전환",fit:"즉시 검토",note:"사전규격 의견마감 8/10. 실감콘텐츠·영상 직접 적합",url:"https://jiwonkok.com/%EA%B5%AC%EB%AF%B8%EC%8B%9C-%EB%B8%8C%EB%9E%9C%EB%93%9C-%EC%8B%A4%EA%B0%90%EC%BD%98%ED%85%90%EC%B8%A0-%EC%98%81%EC%83%81-%EC%A0%9C%EC%9E%91-%EC%9A%A9%EC%97%AD%EA%B8%B4%EA%B8%89-%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84-%EA%B5%AC%EB%AF%B8%EC%8B%9C/"},
+ {no:"PLAN-14",name:"인천어선안전국 스마트 안전교육 체험관 구축",org:"수협중앙회",expected:"2026년 08월",method:"제한경쟁",status:"본공고 전환",fit:"즉시 검토",note:"본공고 R26BK01668373 전환 확인. 8/31 10:00 개찰",url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01668373&bidPbancOrd=000"}
+];
+const PRE_SPECS=[
+ {name:"2028 세계디자인수도 부산 브랜드 BI 구축 및 운영체계 수립",org:"부산디자인진흥원",kind:"일반용역",budgetRaw:97000000,published:"2026-08-08",deadline:"2026-08-13 23:59",fit:"검토",prep:"브랜드 전략·BI·거버넌스 실적, 디자인 전문인력, 공동수급 허용 여부 확인",url:"https://jiwonkok.com/2028-%EC%84%B8%EA%B3%84%EB%94%94%EC%9E%90%EC%9D%B8%EC%88%98%EB%8F%84-%EB%B6%80%EC%82%B0-%EB%B8%8C%EB%9E%9C%EB%93%9C-bi-%EA%B5%AC%EC%B6%95-%EB%B0%8F-%EC%9A%B4%EC%98%81%EC%B2%B4%EA%B3%84-%EC%88%98%EB%A6%BD-%EC%9E%AC%EB%B6%80%EC%82%B0%EB%94%94%EC%9E%90%EC%9D%B8%EC%A7%84%ED%9D%A5%EC%9B%90/"},
+ {name:"26-F-사천에어쇼 항공우주 공군 전시체험관 운영용역",org:"국방부 국군재정관리단",kind:"일반용역",budgetRaw:474000000,published:"2026-08-07",deadline:"2026-08-12 00:00",fit:"우선",prep:"전시체험관 기획·운영, 보안·안전·행사실적, 행사대행업과 공동수급 조건 확인",url:"https://jiwonkok.com/26-f-%EC%82%AC%EC%B2%9C%EC%97%90%EC%96%B4%EC%87%BC-%ED%95%AD%EA%B3%B5%EC%9A%B0%EC%A3%BC-%EA%B3%B5%EA%B5%B0-%EC%A0%84%EC%8B%9C%EC%B2%B4%ED%97%98%EA%B4%80-%EC%9A%B4%EC%98%81%EC%9A%A9%EC%97%AD-%EA%B5%AD%EB%B0%A9%EB%B6%80-%EA%B5%AD%EA%B5%B0%EC%9E%AC%EC%A0%95%EA%B4%80%EB%A6%AC%EB%8B%A8/"},
+ {name:"심리케어를 위한 무인운영 부스와 미디어 콘텐츠 제작",org:"주식회사 퐁",kind:"일반용역",budgetRaw:375100000,published:"2026-08-07",deadline:"2026-08-12 23:59",fit:"우선",prep:"무인부스 설계·제작, 인터랙티브 미디어, 키오스크·개인정보·유지관리 범위 확인",url:"https://jiwonkok.com/%EC%8B%AC%EB%A6%AC%EC%BC%80%EC%96%B4%EB%A5%BC-%EC%9C%84%ED%95%9C-%EB%AC%B4%EC%9D%B8%EC%9A%B4%EC%98%81-%EB%B6%80%EC%8A%A4%EC%99%80-%EB%AF%B8%EB%94%94%EC%96%B4-%EC%BD%98%ED%85%90%EC%B8%A0-%EC%A0%9C%EC%9E%91-%EC%A3%BC%EC%8B%9D%ED%9A%8C%EC%82%AC-%ED%90%81/"},
+ {name:"2026 디자인마이애미 한국공예부스 종합운영대행",org:"한국공예디자인문화진흥원",kind:"일반용역",budgetRaw:230000000,published:"2026-08-07",deadline:"2026-08-10 23:59",fit:"마케팅 공유",prep:"해외부스·현지시공·운송·보험·작품관리 실적과 행사대행업 요건 확인",url:"https://jiwonkok.com/2026-%EB%94%94%EC%9E%90%EC%9D%B8%EB%A7%88%EC%9D%B4%EC%95%A0%EB%AF%B8-%ED%95%9C%EA%B5%AD%EA%B3%B5%EC%98%88%EB%B6%80%EC%8A%A4-%EC%A2%85%ED%95%A9%EC%9A%B4%EC%98%81%EB%8C%80%ED%96%89-%EC%9E%AC%EB%8B%A8%EB%B2%95%EC%9D%B8-%ED%95%9C%EA%B5%AD%EA%B3%B5%EC%98%88%EB%94%94%EC%9E%90%EC%9D%B8%EB%AC%B8%ED%99%94%EC%A7%84%ED%9D%A5%EC%9B%90/"},
+ {name:"기념우표 기획전시관 조성 용역",org:"우정사업조달센터",kind:"일반용역",budgetRaw:106040000,published:"2026-08-07",deadline:"2026-08-10 23:59",fit:"우선",prep:"오늘 의견마감. 전시연출·제작설치 범위, 직생 6010989901·실내건축·실적 제한 확인",url:"https://jiwonkok.com/%EA%B8%B0%EB%85%90%EC%9A%B0%ED%91%9C-%EA%B8%B0%ED%9A%8D%EC%A0%84%EC%8B%9C%EA%B4%80-%EC%A1%B0%EC%84%B1-%EC%9A%A9%EC%97%AD-%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%EC%A0%95%EB%B3%B4%ED%86%B5%EC%8B%A0%EB%B6%80-%EC%9A%B0%EC%A0%95%EC%82%AC%EC%97%85%EB%B3%B8%EB%B6%80-%EC%9A%B0%EC%A0%95%EC%82%AC%EC%97%85%EC%A1%B0%EB%8B%AC%EC%84%BC%ED%84%B0/"},
+ {name:"2026 경남특산물박람회 전시장 장치 및 광고물 제작",org:"경남무역",kind:"일반용역",budgetRaw:121000000,published:"2026-08-07",deadline:"2026-08-11 23:59",fit:"검토",prep:"전시장 장치·광고물 제작 직접 적합. 전시회기획 직생·행사대행업·지역 조건 확인",url:"https://jiwonkok.com/2026-%EA%B2%BD%EB%82%A8%ED%8A%B9%EC%82%B0%EB%AC%BC%EB%B0%95%EB%9E%8C%ED%9A%8C-%EC%A0%84%EC%8B%9C%EC%9E%A5-%EC%9E%A5%EC%B9%98-%EB%B0%8F-%EA%B4%91%EA%B3%A0%EB%AC%BC-%EC%A0%9C%EC%9E%91-%EC%9A%A9%EC%97%AD%EC%97%85%EC%B2%B4-%EC%84%A0%EC%A0%95-%EA%B3%B5%EA%B3%A0-%EC%A3%BC%EA%B2%BD%EB%82%A8%EB%AC%B4%EC%97%AD/"},
+ {name:"영암군 왕인박사유적지 영월관 전시공간 구성 및 전시물 제작·설치",org:"영암군",kind:"일반용역",budgetRaw:950000000,published:"2026-08-06",deadline:"2026-08-11 23:59",fit:"최우선",prep:"9.5억 전시 핵심. 실물모형·전시물 직생, 전시설계, 실내건축, 국가유산·유사실적, 공동수급 조건 확인",url:"https://jiwonkok.com/%EC%98%81%EC%95%94%EA%B5%B0-%EC%99%95%EC%9D%B8%EB%B0%95%EC%82%AC%EC%9C%A0%EC%A0%81%EC%A7%80-%EC%98%81%EC%9B%94%EA%B4%80-%EC%A0%84%EC%8B%9C%EA%B3%B5%EC%82%B0-%EA%B5%AC%EC%84%B1-%EB%B0%8F-%EC%A0%84%EC%8B%9C%EB%AC%BC-%EC%A0%9C%EC%9E%91%EC%84%A4%EC%B9%98-%EC%9A%A9%EC%97%AD%ED%98%91%EC%83%81%EC%97%90%EC%9D%98%ED%95%9C%EA%B3%84%EC%95%BD-%EC%A0%84%EB%82%A8%EA%B4%91%EC%A3%BC%ED%86%B5%ED%95%A9%ED%8A%B9%EB%B3%84%EC%8B%9C-%EC%98%81%EC%95%94%EA%B5%B0/"},
+ {name:"구 미평역 문화예술시설 전시설계 및 전시물 제작 설치",org:"여수시",kind:"일반용역",budgetRaw:450000000,published:"2026-08-06",deadline:"2026-08-11 23:59",fit:"최우선",prep:"4.5억 전시설계·제작설치 직접 적합. 철도역사 공간·안전·실내건축·직생 조건 확인",url:"https://jiwonkok.com/%EA%B5%AC%EB%AF%B8%ED%8F%89%EC%97%AD-%EB%AC%B8%ED%99%94%EC%98%88%EC%88%A0%EC%8B%9C%EC%84%A4-%EC%A0%84%EC%8B%9C%EC%84%A4%EA%B3%84-%EB%B0%8F-%EC%A0%84%EC%8B%9C%EB%AC%BC-%EC%A0%9C%EC%9E%91-%EC%84%A4%EC%B9%98%ED%98%91%EC%83%81%EC%97%90-%EC%9D%98%ED%95%9C-%EA%B3%84%EC%95%BD-%EC%A0%84%EB%82%A8%EA%B4%91%EC%A3%BC%ED%86%B5%ED%95%A9%ED%8A%B9%EB%B3%84%EC%8B%9C-%EC%97%AC%EC%88%98%EC%8B%9C/"},
+ {name:"국립해양박물관 기획전시 해상무역 전시연출 및 제작 설치",org:"국립해양박물관",kind:"일반용역",budgetRaw:158000000,published:"2026-08-06",deadline:"2026-08-11 23:59",fit:"최우선",prep:"전시연출·제작설치 직접 적합. 박물관 실적, 전시물 직생, 도록·영상·그래픽 범위 확인",url:"https://jiwonkok.com/%EA%B5%AD%EB%A6%BD%ED%95%B4%EC%96%91%EB%B0%95%EB%AC%BC%EA%B4%80-%EA%B8%B0%ED%9A%8D%EC%A0%84%EC%8B%9C-%ED%95%B4%EC%83%81%EB%AC%B4%EC%97%AD-%EC%A0%84%EC%8B%9C%EC%97%B0%EC%B6%9C-%EB%B0%8F-%EC%A0%9C%EC%9E%91-%EC%84%A4%EC%B9%98-%EC%9A%A9%EC%97%AD-%EA%B5%AD%EB%A6%BD%ED%95%B4%EC%96%91%EB%B0%95%EB%AC%BC%EA%B4%80/"},
+ {name:"구미시 브랜드 실감콘텐츠 영상 제작 용역",org:"구미시",kind:"일반용역",budgetRaw:120000000,published:"2026-08-06",deadline:"2026-08-10 23:59",fit:"최우선",prep:"오늘 의견마감. 실감콘텐츠 업종 1469, 영상 직생·저작권·송출환경·유사실적 확인",url:"https://jiwonkok.com/%EA%B5%AC%EB%AF%B8%EC%8B%9C-%EB%B8%8C%EB%9E%9C%EB%93%9C-%EC%8B%A4%EA%B0%90%EC%BD%98%ED%85%90%EC%B8%A0-%EC%98%81%EC%83%81-%EC%A0%9C%EC%9E%91-%EC%9A%A9%EC%97%AD%EA%B8%B4%EA%B8%89-%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84-%EA%B5%AC%EB%AF%B8%EC%8B%9C/"},
+ {name:"산림재난 유형별 체험형 VR 콘텐츠 제작",org:"한국산림재난안전기술공단",kind:"일반용역",budgetRaw:58000000,published:"2026-08-06",deadline:"2026-08-10 09:00",fit:"마감 경과",prep:"의견마감 경과. 본공고 전환 모니터링, VR 시나리오·엔진·HMD·안전교육 검증체계 준비",url:"https://jiwonkok.com/%EC%82%B0%EB%A6%BC%EC%9E%AC%EB%82%9C-%EC%9C%A0%ED%98%95%EB%B3%84%EC%82%B0%EB%B6%88%EC%82%B0%EC%82%AC%ED%83%9C-%EC%B2%B4%ED%97%98%ED%98%95-vr-%EC%BD%98%ED%85%90%EC%B8%A0%EC%A0%9C%EC%9E%91-%ED%95%9C%EA%B5%AD%EC%82%B0%EB%A6%BC%EC%9E%AC%EB%82%9C%EC%95%88%EC%A0%84%EA%B8%B0%EC%88%A0%EA%B3%B5%EB%8B%A8/"},
+ {name:"더한글 팝업 전시 운영 대행 용역",org:"세종시문화관광재단",kind:"일반용역",budgetRaw:280000000,published:"2026-08-05",deadline:"2026-08-10 23:59",fit:"우선",prep:"오늘 의견마감. 팝업 전시 기획·공간·콘텐츠·운영 범위와 행사대행업·실적 확인",url:"https://jiwonkok.com/%EB%8D%94%ED%95%9C%EA%B8%80-%ED%8C%9D%EC%97%85-%EC%A0%84%EC%8B%9C%EC%9A%B4%EC%98%81-%EB%8C%80%ED%96%89-%EC%9A%A9%EC%97%AD-%EC%9E%AC%EB%8B%A8%EB%B2%95%EC%9D%B8%EC%84%B8%EC%A2%85%EC%8B%9C%EB%AC%B8%ED%99%94%EA%B4%80%EA%B4%91%EC%9E%AC%EB%8B%A8/"},
+ {name:"2026년 중소기업융합대전 기획운영 및 성과전시부스 설치",org:"중소기업융합중앙회",kind:"일반용역",budgetRaw:228500000,published:"2026-08-05",deadline:"2026-08-10 23:59",fit:"마케팅 공유",prep:"오늘 의견마감. 행사기획·전시부스·운영, 행사대행업·전시회기획 직생 확인",url:"https://jiwonkok.com/2026%EB%85%84-%EC%A4%91%EC%86%8C%EA%B8%B0%EC%97%85%EC%9C%B5%ED%95%A9%EB%8C%80%EC%A0%84-%EA%B8%B0%ED%9A%8D%EC%9A%B4%EC%98%81-%EB%B0%8F-%EC%84%B1%EA%B3%BC%EC%A0%84%EC%8B%9C%EB%B6%80%EC%8A%A4-%EC%84%A4%EC%B9%98-%EC%9A%A9%EC%97%AD-%EC%82%AC%EB%8B%A8%EB%B2%95%EC%9D%B8-%EC%A4%91%EC%86%8C%EA%B8%B0%EC%97%85%EC%9C%B5%ED%95%A9%EC%A4%91%EC%95%99%ED%9A%8C/"},
+ {name:"인천어선안전국 스마트 안전교육 체험관 구축",org:"수협중앙회",kind:"일반용역",budgetRaw:100000000,published:"2026-08-05",deadline:"2026-08-10 23:59",fit:"본공고 전환",prep:"본공고 R26BK01668373 전환 확인. 사전규격 의견은 마감, 입찰 8/31 10:00",url:"https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01668373&bidPbancOrd=000"}
+];
 const GOV=[
  {no:"KSTARTUP-178335",name:"2026년 정부 첫 실증·구매 프로젝트(스마트도시) 창업기업 모집공고",org:"중소벤처기업부 · 창업진흥원",deadline:"2026-07-22",source:"K-Startup",support:"정부지원사업비 1억원",fit:"추천 검토",note:"업력 10년 이내 신산업 창업기업 · 공공 실증 후 혁신제품/시범구매 연계",url:"https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?pbancSn=178335&schM=view"},
  {no:"BIZ-124320",name:"2026년 AI 활용 콘텐츠 제작 지원사업 참여기업 모집 공고",org:"중소벤처기업부 · 한국중소벤처기업유통원",deadline:"2026-07-28",source:"기업마당",support:"생성형 AI 콘텐츠 제작 지원",fit:"조건부 검토",note:"창업 7년 이내 중소기업 · 상품 연출/스타일링 중심이라 보유 상품화 여부 확인 필요",url:"https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000124320"},
@@ -386,11 +434,11 @@ const QUAL_GROUPS={
  review:{label:"추가 확인",desc:"실적·인력·공동이행 조건을 원문에서 확인",cls:"q-unk",order:2},
  blocked:{label:"현재 도전 곤란",desc:"자격 불충족 + 공동수급 불가",cls:"q-no",order:3}
 };
-const SECT={re:"유찰 재공고",gen:"일반공고",qual:"프리다츠 자격판단",win:"AiX 추천 — 적합도·당선 가능성 순",gov:"정부과제 모니터링",skip:"미도전·미등록 공고"};
+const SECT={re:"유찰 재공고",gen:"일반공고",plan:"발주계획 — 영업 선점",spec:"사전규격 — 입찰 사전준비",qual:"프리다츠 자격판단",win:"AiX 추천 — 적합도·당선 가능성 순",gov:"정부과제 모니터링",skip:"미도전·미등록 공고"};
 let stars=JSON.parse(localStorage.getItem("rebidStars")||"{}"),hidden=JSON.parse(localStorage.getItem("rebidHidden")||"{}");
 let typ="re",tier="all",qualMode="all",qualSortBy="dl",govSortBy="dl",onlyNew=false,onlyStar=false,showHidden=false,sortBy="dl",q="";
 const h0=location.hash.replace("#","");
-if(["re","gen","qual","win","gov","skip"].includes(h0))typ=h0;
+if(["re","gen","plan","spec","qual","win","gov","skip"].includes(h0))typ=h0;
 function dday(d){if(!d)return null;return Math.floor((new Date(d.replace(" ","T"))-new Date())/86400000)}
 function localDateKey(){const d=new Date(),p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())}
 function activeData(){const now=new Date();return CURATED.filter(x=>!x.deadline||new Date(x.deadline.replace(" ","T"))>=now)}
@@ -414,6 +462,26 @@ function qualGroup(x){
 }
 function render(){
  const list=document.getElementById("list");list.innerHTML="";
+ if(typ==="plan"||typ==="spec"){
+  let rows=(typ==="plan"?ORDER_PLANS:PRE_SPECS).slice();
+  if(q)rows=rows.filter(x=>(x.name+x.org+(x.status||"")+(x.fit||"")+(x.note||"")+(x.prep||"")).toLowerCase().includes(q));
+  if(typ==="plan")rows.sort((a,b)=>a.status.localeCompare(b.status)||a.name.localeCompare(b.name));
+  else rows.sort((a,b)=>a.deadline.localeCompare(b.deadline)||b.budgetRaw-a.budgetRaw);
+  const advanced=typ==="plan"?rows.filter(x=>x.status!=="발주계획").length:rows.filter(x=>["최우선","우선"].includes(x.fit)).length;
+  document.getElementById("cnt").textContent="[검색결과 "+rows.length+"건 · "+(typ==="plan"?"후속단계 전환 ":"우선 준비 ")+advanced+"건]";
+  list.innerHTML=typ==="plan"
+   ?'<div class="govnote"><strong>영업 선점 구간</strong><br>조달청 발주계획현황의 전시·미디어아트·체험관·조형물·홍보관·디자인 후보를 추적합니다. <b>발주계획 → 사전규격 → 본공고</b> 전환을 카드에 표시했으며, 발주계획은 실제 공고 없이 변경·취소될 수 있어 기관 확인이 필요합니다.</div>'
+   :'<div class="govnote"><strong>입찰 사전준비 구간</strong><br>2026-08-10 기준 공개된 문화·예술·디자인, 홍보·기획 및 확장 키워드 결과 중 <b>5천만원 이상 직접·인접 후보</b>를 선별했습니다. 의견마감 전에는 과도한 실적·면허·직생 제한과 과업 누락을 검토하고, 마감 후에는 본공고 전환을 추적합니다.</div>';
+  for(const x of rows){
+   const isPlan=typ==="plan",money=isPlan?"발주계획 원문 확인":x.budgetRaw.toLocaleString()+"원";
+   const stage=isPlan?x.status:(x.fit==="본공고 전환"?"본공고 전환":"사전규격 공개");
+   const el=document.createElement("div");el.className="card";
+   el.innerHTML=`<div class="r1"><span>${esc(x.org)}</span><span class="no">${esc(x.no||stage)}</span></div><a class="title" href="${x.url}" target="_blank" rel="noopener">${esc(x.name)}</a><div class="meta"><span class="tag hot">${esc(stage)}</span><i>/</i><span class="tag tier">${esc(x.fit)}</span><i>/</i><span>${esc(x.kind||"일반용역")}</span><i>/</i><span>${esc(x.method||"공고 전")}</span></div><div class="meta2">${isPlan?`<span class="lbl2">발주예정</span> <span class="dl">${esc(x.expected)}</span>`:`<span class="lbl2">공개</span> <span>${esc(x.published)}</span><i>/</i><span class="lbl2">의견마감</span> <span class="dl">${esc(x.deadline)}</span>`}<i>/</i><span class="lbl2">금액</span> <span class="price">${esc(money)}</span><i>/</i><span class="lbl2">준비 액션</span> <span class="r-comp">${esc(x.note||x.prep)}</span></div>`;
+   list.appendChild(el);
+  }
+  if(!rows.length)list.innerHTML='<div class="empty">조건에 맞는 선행단계 사업이 없습니다</div>';
+  return;
+ }
  if(typ==="gov"){
   const today=localDateKey();
   let govRows=GOV.filter(x=>x.deadline>=today);
@@ -423,7 +491,7 @@ function render(){
    :a.deadline.localeCompare(b.deadline));
   const recCount=govRows.filter(x=>GOV_RECOMMENDED.has(x.no)).length;
    document.getElementById("cnt").textContent="[진행 "+govRows.length+"건 · 우선 확인 "+recCount+"건 · "+(govSortBy==="bg"?"지원금 큰순":"마감 임박순")+"]";
-   list.innerHTML='<div class="govnote"><strong>프리다츠 우선 확인 후보</strong><br><b>공공데이터×AI 서비스 고도화, ICT 일본 진출, ICT 투자 IR, 콘텐츠IP 사업화, 유니버설디자인 공모</b>를 우선 확인 대상으로 잡았습니다. 벤처나라·우수조달·혁신제품은 보유 제품과 인증 요건을, 지역사업은 실제 이전 의사를, R&D는 기업부설연구소와 RFP 일치를 먼저 확인해야 합니다. <b>2026-08-09 기준 공식 상세페이지·공고 목록 확인본</b>이며, 참여 여부는 PM이 원문 증빙을 확인해 결정합니다.</div>';
+   list.innerHTML='<div class="govnote"><strong>프리다츠 우선 확인 후보</strong><br><b>공공데이터×AI 서비스 고도화, ICT 일본 진출, ICT 투자 IR, 콘텐츠IP 사업화, 유니버설디자인 공모</b>를 우선 확인 대상으로 잡았습니다. 벤처나라·우수조달·혁신제품은 보유 제품과 인증 요건을, 지역사업은 실제 이전 의사를, R&D는 기업부설연구소와 RFP 일치를 먼저 확인해야 합니다. <b>2026-08-10 기준 공식 상세페이지·공고 목록 재확인본</b>이며, 참여 여부는 PM이 원문 증빙을 확인해 결정합니다.</div>';
    for(const x of govRows){const rec=GOV_RECOMMENDED.has(x.no),status=x.status||(x.deadline===today?"오늘 마감":"진행중");const el=document.createElement("div");el.className="card";el.innerHTML=`<div class="r1"><span>${x.source}</span><span class="no">${x.no}</span></div><a class="title" href="${x.url}" target="_blank" rel="noopener">${esc(x.name)}</a><div class="meta"><span class="tag tier">정부과제</span><i>/</i>${rec?'<span class="tag hot">우선 확인</span><i>/</i>':''}<span class="tag">${esc(status)}</span><i>/</i><span class="tag ${x.fit==="관망/제외"?"w9":"w3"}">${x.fit}</span></div><div class="meta2"><span class="lbl2">공모 분야</span> <span class="r-comp">${esc(x.field)}</span><i>/</i><span class="lbl2">소관</span> <span>${esc(x.org)}</span><i>/</i><span class="lbl2">마감</span> <span class="dl">${x.deadline}</span><i>/</i><span class="lbl2">지원</span> <span class="price">${esc(x.support)}</span><i>/</i><span class="lbl2">자격 메모</span> <span class="${x.fit==="관망/제외"?"r-fail":"r-comp"}">${esc(x.note)}</span></div>`;list.appendChild(el)}
   if(!govRows.length)list.innerHTML='<div class="empty">진행 중인 정부과제 후보가 없습니다</div>';
   return;
@@ -435,7 +503,7 @@ function render(){
  if(typ==="gen"){
   const watchHits=base.filter(marketingWatchHit);
   const sculptureCount=base.filter(x=>x.tier===0).length;
-  list.innerHTML='<div class="govnote"><strong>조형물·공공미술 확장검색 완료</strong><br><b>'+SCULPTURE_SCAN_TERMS.join(' · ')+'</b>까지 제목 확장검색했습니다. <b>2026-08-07 현재 조형물·미술 진행 '+sculptureCount+'건</b>이며, 순수 전기공사·지역제한 사업도 누락하지 않고 후순위에 표시했습니다.</div><div class="govnote"><strong>마케팅 공유 고정 모니터링</strong><br><b>포스코 · 한수원(한국수력원자력) · 강원랜드/하이원 · 진도군/세방낙조</b>의 홍보·마케팅·브랜딩·전시·콘텐츠·미디어·관광·축제·영상·조형 사업을 나라장터와 자체조달에서 함께 확인합니다. <b>2026-08-07 현재 적합 신규 '+watchHits.length+'건</b>이며, 관련 공고가 잡히면 카드에 <span class="tag hot">마케팅 공유</span>로 표시합니다.</div>';
+  list.innerHTML='<div class="govnote"><strong>조형물·공공미술 확장검색 완료</strong><br><b>'+SCULPTURE_SCAN_TERMS.join(' · ')+'</b>까지 제목 확장검색했습니다. <b>2026-08-10 현재 조형물·미술 진행 '+sculptureCount+'건</b>이며, 발주계획 단계의 청풍호 바람달정원 조형물도 별도 추적합니다.</div><div class="govnote"><strong>마케팅 공유 고정 모니터링</strong><br><b>포스코 · 한수원(한국수력원자력) · 강원랜드/하이원 · 진도군/세방낙조</b>의 홍보·마케팅·브랜딩·전시·콘텐츠·미디어·관광·축제·영상·조형 사업을 나라장터와 자체조달에서 함께 확인합니다. <b>2026-08-10 현재 적합 신규 '+watchHits.length+'건</b>이며, 관련 공고가 잡히면 카드에 <span class="tag hot">마케팅 공유</span>로 표시합니다.</div>';
  }
  if(typ==="qual"){
   document.querySelectorAll(".qchip").forEach(b=>{
@@ -522,10 +590,10 @@ function setTab(t,updateHash=true){
  if(updateHash&&location.hash!==`#${t}`)location.hash=t;
  document.querySelectorAll("#typNav button").forEach(x=>x.classList.toggle("on",x.dataset.typ===t));
  document.getElementById("secTitle").textContent=SECT[t];
- document.getElementById("flags").hidden=t==="gov"||t==="qual";
+ document.getElementById("flags").hidden=t==="gov"||t==="qual"||t==="plan"||t==="spec";
  document.getElementById("qualFlags").hidden=t!=="qual";
  document.getElementById("govFlags").hidden=t!=="gov";
- document.getElementById("q").placeholder=t==="gov"?"과제명/기관을 입력해 주세요.":t==="qual"?"공고명/기관/자격을 검색해 주세요.":"공고명/수요기관을 입력해 주세요.";
+ document.getElementById("q").placeholder=t==="gov"?"과제명/기관을 입력해 주세요.":t==="qual"?"공고명/기관/자격을 검색해 주세요.":t==="plan"?"발주계획명/기관/상태를 검색해 주세요.":t==="spec"?"사전규격명/기관/준비사항을 검색해 주세요.":"공고명/수요기관을 입력해 주세요.";
  render();
 }
 document.getElementById("typNav").addEventListener("click",e=>{
